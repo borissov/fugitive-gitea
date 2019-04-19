@@ -1,4 +1,4 @@
-# fugitive-bitbucketserver
+# fugitive-gitea
 
 ## Installation
 
