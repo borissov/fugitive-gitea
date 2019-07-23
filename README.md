@@ -18,7 +18,7 @@ git clone git://github.com/borissov/fugitive-gitea
 ```
 
 ## Settings
-In your vimrc file add options to set your bitbucket server urls.
+In your .vimrc file add options to set your Gitea server urls.
 
 ```viml
 let g:fugitive_gitea_domains = ['http://yoururl.com'] 
