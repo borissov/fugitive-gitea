@@ -20,6 +20,9 @@ function! s:giteaserver_url(opts, ...) abort
     return ''
   endif
 
+  if match(a:opts.remote, 'ssh://') >= 0
+      let repo = substitute(repo, ':\d\+', '', '')
+  endif
 
   if index(domains, 'http://' . matchstr(repo, '^[^:/]*')) >= 0
     let root = 'http://'.repo
