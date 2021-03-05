@@ -48,9 +48,9 @@ function! s:giteaserver_url(opts, ...) abort
   if get(a:opts, 'type', '') ==# 'tree' || a:opts.path =~# '/$'
     return ''
   elseif get(a:opts, 'type', '') ==# 'blob' || a:opts.path =~# '[^/]$'
-    let url = root . '/src/commit/'.commit.'/'.path
+    let url = root . '/src/'.commit.'/'.path
     if get(a:opts, 'line1')
-      let url .= '\#L' . a:opts.line1
+      let url .= '#L' . a:opts.line1
       if get(a:opts, 'line2') != get(a:opts, 'line1')
         let url .= '-L' . a:opts.line2
       endif
