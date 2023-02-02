@@ -11,13 +11,17 @@ function! fugitive#gitea#browse_handler(opts, ...) abort
   endfor
 
   let domain_pattern = join(domain_patterns, '\|')
-  let repo = matchstr(a:opts.remote,'^\%(https\=://\|git://\|\(ssh://\)\=git@\)\%(.\{-\}@\)\=\zs\('.domain_pattern.'\)[/:].\{-\}\ze\%(\.git\)\=$')
+  let repo = matchstr(a:opts.remote,'^\%(https\=://\|git://\|\(ssh://\)\=\a\+@\)\%(.\{-\}@\)\=\zs\('.domain_pattern.'\)[/:].\{-\}\ze\%(\.git\)\=$')
   if repo ==# ''
     return ''
   endif
 
   if match(a:opts.remote, 'ssh://') >= 0
       let repo = substitute(repo, ':\d\+', '', '')
+  endif
+
+  if match(a:opts.remote, '\a\+@') >= 0
+      let repo = substitute(repo, ':', '/', '')
   endif
 
   if index(domains, 'http://' . matchstr(repo, '^[^:/]*')) >= 0
